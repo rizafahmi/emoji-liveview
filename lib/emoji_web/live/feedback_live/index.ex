@@ -35,8 +35,8 @@ defmodule EmojiWeb.FeedbackLive.Index do
       {:ok, _feedback} ->
         socket =
           socket
-          |> put_flash(:info, "Feedback created successfully.")
           |> push_navigate(to: ~p"/#{socket.assigns.event}")
+          # |> put_flash(:info, "Feedback created successfully.")
 
         {:noreply, socket}
 
