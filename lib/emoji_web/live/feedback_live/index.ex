@@ -7,6 +7,8 @@ defmodule EmojiWeb.FeedbackLive.Index do
 
   @impl true
   def mount(%{"event" => event}, _session, socket) do
+    if connected?(socket), do: Feedbacks.Operation.subscribe()
+
     changeset = Feedbacks.Feedback.changeset(%Feedback{}, %{})
 
     # Get user by socket_id
@@ -29,7 +31,7 @@ defmodule EmojiWeb.FeedbackLive.Index do
       |> Map.put("event", socket.assigns.event)
       |> Map.put("socket_id", socket.id)
 
-    case Feedbacks.create_feedback(params) do
+    case Feedbacks.Operation.create_feedback_and_broadcast(params) do
       {:ok, _feedback} ->
         socket =
           socket
@@ -45,5 +47,10 @@ defmodule EmojiWeb.FeedbackLive.Index do
 
         {:noreply, socket}
     end
+  end
+
+  @impl true
+  def handle_info({:feedback_created, feedback}, socket) do
+    {:noreply, update(socket, :feedbacks, fn feedbacks -> [feedback | feedbacks] end)}
   end
 end
