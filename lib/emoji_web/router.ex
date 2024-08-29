@@ -17,7 +17,7 @@ defmodule EmojiWeb.Router do
   scope "/", EmojiWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/:event", FeedbackLive.Index
   end
 
   # Other scopes may use custom stacks.

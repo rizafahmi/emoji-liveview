@@ -1,0 +1,10 @@
+<.form for={@form} id="feedback-form" phx-submit="submit">
+  <.input field={@form[:emoji]} type="text" label="Emoji" />
+  <button type="submit">Submit</button>
+</.form>
+
+<ul>
+  <li :for={feedback <- @feedbacks}>
+    <span><%= feedback.emoji %></span>
+  </li>
+</ul>
