@@ -1,10 +1,10 @@
-<.form for={@form} id="feedback-form" phx-submit="submit">
-  <.input field={@form[:emoji]} type="text" label="Emoji" />
-  <button type="submit">Submit</button>
-</.form>
+<dialog open={assigns[:show_dialog]} id="feedback-dialog">
+  <.form for={@form} id="feedback-form" phx-submit="submit">
+    <.input field={@form[:emoji]} type="text" label="Emoji" />
+    <button type="submit">Submit</button>
+  </.form>
+</dialog>
 
-<ul>
-  <li :for={feedback <- @feedbacks}>
-    <span><%= feedback.emoji %></span>
-  </li>
-</ul>
+<div :for={feedback <- @feedbacks}>
+  <span><%= feedback.emoji %></span>
+</div>
