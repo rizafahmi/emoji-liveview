@@ -11,7 +11,6 @@ defmodule EmojiWeb.FeedbackLive.Index do
 
     # Get user by socket_id
     user = Repo.get_by(Feedback, socket_id: socket.id)
-    dbg user
 
     socket =
       socket

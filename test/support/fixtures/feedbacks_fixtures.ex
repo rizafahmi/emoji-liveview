@@ -12,7 +12,8 @@ defmodule Emoji.FeedbacksFixtures do
       attrs
       |> Enum.into(%{
         emoji: "some emoji",
-        event: "some event"
+        event: "event",
+        socket_id: "some socket_id"
       })
       |> Emoji.Feedbacks.create_feedback()
 

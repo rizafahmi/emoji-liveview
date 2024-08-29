@@ -21,11 +21,12 @@ defmodule Emoji.FeedbacksTest do
     end
 
     test "create_feedback/1 with valid data creates a feedback" do
-      valid_attrs = %{emoji: "some emoji", event: "some event"}
+      valid_attrs = %{emoji: "some emoji", event: "event", socket_id: "some socket_id"}
 
       assert {:ok, %Feedback{} = feedback} = Feedbacks.create_feedback(valid_attrs)
       assert feedback.emoji == "some emoji"
-      assert feedback.event == "some event"
+      assert feedback.event == "event"
+      assert feedback.socket_id == "some socket_id"
     end
 
     test "create_feedback/1 with invalid data returns error changeset" do
