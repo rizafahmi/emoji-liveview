@@ -18,7 +18,7 @@ defmodule Emoji.Feedbacks do
 
   """
   def list_feedbacks do
-    Repo.all(Feedback)
+    Repo.all(from f in Feedback, order_by: [desc: f.inserted_at])
   end
 
   @doc """
