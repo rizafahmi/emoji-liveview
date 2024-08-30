@@ -3,3 +3,6 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+dialog :focus {
+    outline: 2px solid #226daa;
+}
