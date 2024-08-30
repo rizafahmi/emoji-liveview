@@ -1,5 +1,5 @@
-<dialog open={assigns[:show_dialog]} id="feedback-dialog" class="modal">
-<div class="modal-box">
+<dialog open={assigns[:show_dialog]} id="feedback-dialog" class="modal backdrop-brightness-75">
+<div class="modal-box bg-opacity-85">
   <.form for={@form} id="feedback-form" phx-submit="submit" method="modal">
     <h3 class="text-xl font-bold">Give me some feedback</h3>
     <div class="rating gap-1 py-4">
@@ -16,6 +16,6 @@
   </div>
 </dialog>
 
-<div id="emoji" :for={feedback <- @feedbacks} style={"position: absolute; left: #{Enum.random(0..100)}%; top: #{Enum.random(0..100)}%;"} class="ease-in duration-300 hover:scale-110 transform transition-all">
+<div :for={feedback <- @feedbacks} style={"position: absolute; left: #{Enum.random(0..100)}%; top: #{Enum.random(0..100)}%;"} class="ease-in duration-300 hover:scale-110 transform transition-all">
 <span class=""><%= feedback.emoji %></span>
 </div>
