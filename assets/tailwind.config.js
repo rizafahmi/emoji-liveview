@@ -4,15 +4,12 @@
 const plugin = require("tailwindcss/plugin");
 const fs = require("fs");
 const path = require("path");
+const { default: daisyui } = require("daisyui");
 
 module.exports = {
   content: ["./js/**/*.js", "../lib/emoji_web.ex", "../lib/emoji_web/**/*.*ex"],
-  theme: {
-    extend: {
-      colors: {
-        brand: "#FD4F00",
-      },
-    },
+  daisyui: {
+    themes: ["cmyk"],
   },
   plugins: [
     require("daisyui"),
