@@ -11,7 +11,6 @@ defmodule EmojiWeb.FeedbackLive.Index do
 
     changeset = Feedbacks.Feedback.changeset(%Feedback{}, %{})
 
-    # Get user by socket_id
     user = Repo.get_by(Feedback, socket_id: socket.id)
 
     socket =
@@ -52,5 +51,32 @@ defmodule EmojiWeb.FeedbackLive.Index do
   @impl true
   def handle_info({:feedback_created, feedback}, socket) do
     {:noreply, update(socket, :feedbacks, fn feedbacks -> [feedback | feedbacks] end)}
+  end
+
+  @impl true
+  def render(assigns) do
+    ~H"""
+    <dialog open={assigns[:show_dialog]} id="feedback-dialog" class="modal backdrop-brightness-75">
+    <div class="modal-box bg-opacity-85">
+      <.form for={@form} id="feedback-form" phx-submit="submit" method="modal">
+        <h3 class="text-xl font-bold">Give me some feedback</h3>
+        <div class="rating gap-1 py-4">
+          <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-red-400" value="1" />
+          <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-orange-400" value="2" />
+          <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-yellow-400" checked="checked" value="3" />
+          <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-lime-400" value="4" />
+          <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-green-400" value="5" />
+        </div>
+        <div class="">
+        <button class="btn" type="submit">Submit</button>
+        </div>
+      </.form>
+      </div>
+    </dialog>
+
+    <div :for={feedback <- @feedbacks} style={"position: absolute; left: #{Enum.random(0..100)}%; top: #{Enum.random(0..100)}%;"} class="ease-in duration-300 hover:scale-110 transform transition-all">
+    <span class=""><%= feedback.emoji %></span>
+    </div>
+"""
   end
 end
