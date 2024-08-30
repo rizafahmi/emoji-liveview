@@ -21,7 +21,12 @@ defmodule Emoji.Feedbacks.Operation do
     Phoenix.PubSub.subscribe(Emoji.PubSub, "feedbacks")
   end
 
+  def list_events() do
+    Repo.all(from f in Feedback, distinct: true, select: f.event)
+  end
+
   defp broadcast({:error, _reason} = error, _event), do: error
+
   defp broadcast({:ok, feedback}, event) do
     Phoenix.PubSub.broadcast(Emoji.PubSub, "feedbacks", {event, feedback})
     {:ok, feedback}

@@ -17,6 +17,7 @@ defmodule EmojiWeb.Router do
   scope "/", EmojiWeb do
     pipe_through :browser
 
+    live "/", Landing
     live "/:event", FeedbackLive.Index
   end
 
