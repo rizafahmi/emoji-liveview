@@ -1,10 +1,21 @@
-<dialog open={assigns[:show_dialog]} id="feedback-dialog">
-  <.form for={@form} id="feedback-form" phx-submit="submit">
-    <.input field={@form[:emoji]} type="text" label="Emoji" />
-    <button type="submit">Submit</button>
+<dialog open={assigns[:show_dialog]} id="feedback-dialog" class="modal">
+<div class="modal-box">
+  <.form for={@form} id="feedback-form" phx-submit="submit" method="modal">
+    <h3 class="text-xl font-bold">Give me some feedback</h3>
+    <div class="rating gap-1 py-4">
+      <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-red-400" value="1" />
+      <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-orange-400" value="2" />
+      <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-yellow-400" checked="checked" value="3" />
+      <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-lime-400" value="4" />
+      <input type="radio" name="feedback[emoji]" class="mask mask-heart bg-green-400" value="5" />
+    </div>
+    <div class="">
+    <button class="btn" type="submit">Submit</button>
+    </div>
   </.form>
+  </div>
 </dialog>
 
-<div id="emoji" :for={feedback <- @feedbacks} style={"position: absolute; left: #{Enum.random(0..100)}%; top: #{Enum.random(0..100)}%;"}>
-<span><%= feedback.emoji %></span>
+<div id="emoji" :for={feedback <- @feedbacks} style={"position: absolute; left: #{Enum.random(0..100)}%; top: #{Enum.random(0..100)}%;"} class="ease-in duration-300 hover:scale-110 transform transition-all">
+<span class=""><%= feedback.emoji %></span>
 </div>

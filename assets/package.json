@@ -9,7 +9,6 @@
   "author": "",
   "license": "MIT",
   "description": "",
-  "type": "module",
   "devDependencies": {
     "daisyui": "^4.12.10"
   }
