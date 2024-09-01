@@ -18,3 +18,6 @@ config :logger, level: :info
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+config :emoji, EmojiWeb.Endpoint,
+  url: [port: 443, scheme: "https"],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]]
