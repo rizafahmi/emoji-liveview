@@ -1,4 +1,4 @@
-providers = []
+providers = ['elixir']
 buildImage = 'ghcr.io/railwayapp/nixpacks:ubuntu-1721088222'
 
 [variables]
