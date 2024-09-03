@@ -1,5 +1,5 @@
-ARG ELIXIR_VERSION=1.17.2
-ARG OTP_VERSION=25.1.2.1
+ARG ELIXIR_VERSION=1.16.3
+ARG OTP_VERSION=24.2.2
 ARG UBUNTU_VERSION=jammy-20240808
 ARG APP_NAME=emoji
 
@@ -77,7 +77,7 @@ COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/${APP_NAME} .
 
 USER nobody
 
-CMD ["/app/bin/server"]
+CMD ["/app/bin/${APP_NAME}", "start"]
 # Appended by flyctl
-ENV ECTO_IPV6 true
-ENV ERL_AFLAGS "-proto_dist inet6_tcp"
+# ENV ECTO_IPV6 true
+# ENV ERL_AFLAGS "-proto_dist inet6_tcp"
