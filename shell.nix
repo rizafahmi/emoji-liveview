@@ -15,6 +15,7 @@ let
 	    nodejs_22
 	    yarn
 	    postgresql
+		copilot-cli
 	  ];
 
 	inputs = basePackages
@@ -41,5 +42,3 @@ pkgs.mkShellNoCC {
   buildInputs = inputs;
   shelHook = hooks;
 }
-
-
