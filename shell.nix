@@ -10,7 +10,7 @@ let
 	    libxml2
 	    curl
 	    libiconv
-	    elixir_1_17
+	    elixir_1_16
 	    glibcLocales
 	    nodejs_22
 	    yarn
