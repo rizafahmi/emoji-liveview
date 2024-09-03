@@ -62,9 +62,9 @@ RUN apt-get update -y && apt-get install -y libstdc++6 openssl libncurses5 local
 # Set the locale
 RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
 
 WORKDIR "/app"
 RUN chown nobody /app
@@ -77,7 +77,7 @@ COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/${APP_NAME} .
 
 USER nobody
 
-CMD ["/app/bin/${APP_NAME}", "start"]
+CMD ["/app/emoji/bin/emoji", "start"]
 # Appended by flyctl
 # ENV ECTO_IPV6 true
 # ENV ERL_AFLAGS "-proto_dist inet6_tcp"
