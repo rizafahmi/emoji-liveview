@@ -1,17 +1,22 @@
-ARG ELIXIR_VERSION=1.16.3
-ARG OTP_VERSION=24.2.2
-ARG UBUNTU_VERSION=jammy-20240808
-ARG APP_NAME=emoji
+FROM elixir:1.17.2
 
-ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-ubuntu-${UBUNTU_VERSION}"
-ARG RUNNER_IMAGE="ubuntu:${UBUNTU_VERSION}"
+RUN mix local.hex --force \
+    && mix archive.install --force hex phx_new \
+    && apt-get update \
+    && curl -sL https://deb.nodesource.com/setup_lts.x | bash \
+    && apt-get install -y apt-utils \
+    && apt-get install -y nodejs \
+    && apt-get install -y build-essential \
+    && apt-get install -y inotify-tools \
+    && mix local.rebar --force
 
-FROM ${BUILDER_IMAGE} as builder
+ENV APP_HOME=/app
+RUN mkdir -p $APP_HOME
+WORKDIR $APP_HOME
 
-# install build dependencies
-RUN apt-get update -y && apt-get install -y build-essential git \
-    && apt-get clean && rm -f /var/lib/apt/lists/*_*
+EXPOSE 4000
 
+<<<<<<< HEAD
 # prepare build dir
 WORKDIR /app
 
@@ -81,3 +86,6 @@ CMD ["/app/emoji/bin/emoji", "start"]
 # Appended by flyctl
 # ENV ECTO_IPV6 true
 # ENV ERL_AFLAGS "-proto_dist inet6_tcp"
+=======
+CMD ["mix", "phx.server"]
+>>>>>>> deploy
