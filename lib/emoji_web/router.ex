@@ -18,6 +18,7 @@ defmodule EmojiWeb.Router do
     pipe_through :browser
 
     live "/", Landing
+    get "/reset", PageController, :reset
     live "/:event", FeedbackLive.Index
   end
 

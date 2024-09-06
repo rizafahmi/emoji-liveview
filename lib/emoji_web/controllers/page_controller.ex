@@ -6,4 +6,11 @@ defmodule EmojiWeb.PageController do
     # so skip the default app layout.
     render(conn, :home, layout: false)
   end
+
+  def reset(conn, _params) do
+    Emoji.Extras.delete_all_feedbacks()
+    conn
+      |> put_flash(:info, "Feedbacks reset")
+      |> redirect(to: "/")
+end
 end
