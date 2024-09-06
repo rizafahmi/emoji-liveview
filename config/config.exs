@@ -13,7 +13,7 @@ config :emoji,
 
 # Configures the endpoint
 config :emoji, EmojiWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "127.0.0.1"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: EmojiWeb.ErrorHTML, json: EmojiWeb.ErrorJSON],
