@@ -17,6 +17,7 @@ defmodule EmojiWeb.Landing do
   @impl true
   def render(assigns) do
     ~H"""
+    <h2 class="text-2xl font-black uppercase">Live Feedback</h2>
     <div class="container flex">
       <%= for event <- @events do %>
         <div

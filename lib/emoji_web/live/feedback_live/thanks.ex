@@ -38,7 +38,7 @@ defmodule EmojiWeb.FeedbackLive.Thanks do
             We appreciate you taking the time to give rating. If you ever need more support, don't hesitate to get in touch!
           </p>
           <div class="card-actions justify-end">
-            <.link href="/" class="btn">Back Home</.link>
+            <.link navigate="/" class="btn">Back Home</.link>
           </div>
         </div>
       </div>
