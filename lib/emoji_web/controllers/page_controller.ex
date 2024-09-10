@@ -9,8 +9,9 @@ defmodule EmojiWeb.PageController do
 
   def reset(conn, _params) do
     Emoji.Extras.delete_all_feedbacks()
+
     conn
-      |> put_flash(:info, "Feedbacks reset")
-      |> redirect(to: "/")
-end
+    |> put_flash(:info, "Feedbacks reset")
+    |> redirect(to: "/")
+  end
 end
