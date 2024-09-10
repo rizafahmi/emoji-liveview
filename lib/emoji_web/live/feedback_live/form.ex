@@ -30,7 +30,7 @@ defmodule EmojiWeb.FeedbackLive.Form do
         socket =
           socket
           |> put_flash(:info, "Feedback created successfully.")
-          |> push_navigate(to: ~p"/feedback")
+          |> push_navigate(to: ~p"/feedback/thanks")
 
         {:noreply, socket}
 
