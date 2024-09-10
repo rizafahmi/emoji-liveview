@@ -21,7 +21,7 @@ defmodule EmojiWeb.Landing do
       <%= for event <- @events do %>
         <div
           onclick={"qrmodal#{event}.showModal()"}
-          class="card bg-primary image-full w-96 shadow-xl my-6 mx-4"
+          class="card bg-primary cursor-pointer image-full w-96 shadow-xl my-6 mx-4"
         >
           <figure>
             <img src={"data:image/png; base64, #{qr_blob(event)}"} alt="QR Code" />
