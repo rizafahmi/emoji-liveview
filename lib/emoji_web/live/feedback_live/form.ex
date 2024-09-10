@@ -44,15 +44,20 @@ defmodule EmojiWeb.FeedbackLive.Form do
     end
   end
 
-    def handle_event("submit", _params, socket) do
-    changeset = Feedbacks.Feedback.changeset(%Feedback{}, %{"event" => "javascriptbangkok", "socket_id" => socket.id })
-        socket =
-          socket
-          |> assign(:form, to_form(changeset))
-          |> assign(:is_error, true)
-    {:noreply, socket}
-    end
+  def handle_event("submit", _params, socket) do
+    changeset =
+      Feedbacks.Feedback.changeset(%Feedback{}, %{
+        "event" => "javascriptbangkok",
+        "socket_id" => socket.id
+      })
 
+    socket =
+      socket
+      |> assign(:form, to_form(changeset))
+      |> assign(:is_error, true)
+
+    {:noreply, socket}
+  end
 
   @impl true
   def render(assigns) do
@@ -73,7 +78,9 @@ defmodule EmojiWeb.FeedbackLive.Form do
           />
         </svg>
         <ul>
-          <li :for={{type, {message, _}} <- @form.source.errors}><%= Atom.to_string(type) %> <%= message %></li>
+          <li :for={{type, {message, _}} <- @form.source.errors}>
+            <%= Atom.to_string(type) %> <%= message %>
+          </li>
         </ul>
       </div>
     <% end %>
