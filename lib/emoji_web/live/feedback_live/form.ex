@@ -30,7 +30,7 @@ defmodule EmojiWeb.FeedbackLive.Form do
         socket =
           socket
           |> put_flash(:info, "Feedback created successfully.")
-          |> push_navigate(to: ~p"/feedback/thanks")
+          |> push_navigate(to: ~p"/form/thanks")
 
         {:noreply, socket}
 
@@ -45,6 +45,7 @@ defmodule EmojiWeb.FeedbackLive.Form do
   end
 
   def handle_event("submit", _params, socket) do
+    IO.puts("Server: Rating needed.")
     changeset =
       Feedbacks.Feedback.changeset(%Feedback{}, %{
         "event" => "javascriptbangkok",
