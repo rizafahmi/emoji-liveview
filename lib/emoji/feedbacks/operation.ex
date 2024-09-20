@@ -9,7 +9,7 @@ defmodule Emoji.Feedbacks.Operation do
   alias Emoji.Feedbacks.Feedback
 
   def list_feedbacks_by_event(event) do
-    Repo.all(from f in Feedback, where: f.event == ^event)
+    Repo.all(from f in Feedback, where: f.event == ^event, order_by: [desc: f.inserted_at])
   end
 
   def create_feedback_and_broadcast(attrs \\ %{}) do
