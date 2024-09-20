@@ -62,7 +62,6 @@ defmodule EmojiWeb.FeedbackLive.Index do
       |> update(:feedbacks, fn _ -> feedbacks end)
       |> update(:feedback, fn _ -> feedback end)
 
-    dbg(socket.assigns.feedback)
     {:noreply, socket}
   end
 
