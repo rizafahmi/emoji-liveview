@@ -102,12 +102,12 @@ defmodule EmojiWeb.FeedbackLive.Index do
       style={"position: absolute; left: #{Enum.random(0..100)}%; top: #{Enum.random(0..100)}%;"}
       class="ease-in duration-300 hover:scale-110 transform transition-all"
     >
-      <span class="text-3xl"><%= feedback.emoji %></span>
+      <span class="emoji text-3xl"><%= feedback.emoji %></span>
     </div>
 
     <div
       style={"position: absolute; left: #{Enum.random(0..100)}%; top: #{Enum.random(0..100)}%;"}
-      class="animate-ping ease-in duration-300 hover:scale-110 transform transition-all"
+      class="emoji animate-ping ease-in duration-300 hover:scale-110 transform transition-all"
     >
       <span class="text-3xl"><%= @feedback.emoji %></span>
     </div>
