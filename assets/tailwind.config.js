@@ -8,8 +8,12 @@ const { default: daisyui } = require("daisyui");
 
 module.exports = {
   content: ["./js/**/*.js", "../lib/emoji_web.ex", "../lib/emoji_web/**/*.*ex"],
-  daisyui: {
-    themes: ["cmyk"],
+  theme: {
+    extend: {
+      colors: {
+        brand: "#FD4F00",
+      },
+    },
   },
   plugins: [
     require("daisyui"),
@@ -86,4 +90,18 @@ module.exports = {
       );
     }),
   ],
+  daisyui: {
+    themes: [
+      {
+        lofi: {
+          ...require("daisyui/src/theming/themes")["lofi"],
+          "base-100": "#EFE9D6",
+          "primary-content": "#efe9d6",
+          primary: "#1E201D",
+          secondary: "#999792",
+          accent: "#999792",
+        },
+      },
+    ],
+  },
 };

@@ -6,3 +6,7 @@
 dialog :focus {
     outline: 2px solid #226daa;
 }
+
+.emoji {
+    filter: saturate(0.4);
+}
