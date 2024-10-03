@@ -69,7 +69,7 @@ defmodule EmojiWeb.Landing do
 
   defp qr_blob(event) do
     {:ok, qr_blob} =
-      "http://localhost:4000/#{event}"
+      "https://feedback.riza.world/#{event}"
       |> QRCode.create()
       |> QRCode.render(:png, %QRCode.Render.PngSettings{background_color: "#EFE9D6"})
       |> QRCode.to_base64()
