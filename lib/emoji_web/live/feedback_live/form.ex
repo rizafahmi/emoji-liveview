@@ -46,6 +46,7 @@ defmodule EmojiWeb.FeedbackLive.Form do
 
   def handle_event("submit", _params, socket) do
     IO.puts("Server: Rating needed.")
+
     changeset =
       Feedbacks.Feedback.changeset(%Feedback{}, %{
         "event" => "javascriptbangkok",
