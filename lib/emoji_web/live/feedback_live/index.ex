@@ -13,12 +13,23 @@ defmodule EmojiWeb.FeedbackLive.Index do
 
     user = Repo.get_by(Feedback, socket_id: socket.id)
 
-    {feedback, feedbacks} = Feedbacks.Operation.list_feedbacks_by_event(event) |> List.pop_at(0)
+    socket =
+      case Feedbacks.Operation.list_feedbacks_by_event(event) do
+        feedbacks ->
+          {feedback, feedbacks} = feedbacks |> List.pop_at(0)
+
+          socket
+          |> assign(:feedbacks, feedbacks)
+          |> assign(:feedback, feedback)
+
+        _ ->
+          socket
+          |> assign(:feedbacks, [])
+          |> assign(:feedback, nil)
+      end
 
     socket =
       socket
-      |> assign(:feedbacks, feedbacks)
-      |> assign(:feedback, feedback)
       |> assign(:event, event)
       |> assign(:form, to_form(changeset))
       |> assign(:show_dialog, !user)
@@ -105,12 +116,14 @@ defmodule EmojiWeb.FeedbackLive.Index do
       <span class="emoji text-3xl"><%= feedback.emoji %></span>
     </div>
 
-    <div
-      style={"position: absolute; left: #{Enum.random(0..100)}%; top: #{Enum.random(0..100)}%;"}
-      class="emoji animate-ping ease-in duration-300 hover:scale-110 transform transition-all"
-    >
-      <span class="text-3xl"><%= @feedback.emoji %></span>
-    </div>
+    <%= if Map.get(assigns, :feedback) != nil do %>
+      <div
+        style={"position: absolute; left: #{Enum.random(0..100)}%; top: #{Enum.random(0..100)}%;"}
+        class="emoji animate-ping ease-in duration-300 hover:scale-110 transform transition-all"
+      >
+        <span class="text-3xl"><%= @feedback.emoji %></span>
+      </div>
+    <% end %>
     """
   end
 end
