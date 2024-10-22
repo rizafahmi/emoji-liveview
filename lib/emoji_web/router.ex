@@ -19,6 +19,7 @@ defmodule EmojiWeb.Router do
 
     live "/", Landing
     get "/reset", PageController, :reset
+    get "/feedbacks/:password", PageController, :feedbacks
     live "/form", FeedbackLive.Form
     live "/form/thanks", FeedbackLive.Thanks
     live "/:event", FeedbackLive.Index

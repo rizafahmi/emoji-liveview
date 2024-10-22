@@ -14,4 +14,16 @@ defmodule EmojiWeb.PageController do
     |> put_flash(:info, "Feedbacks reset")
     |> redirect(to: "/")
   end
+
+  def feedbacks(conn, %{"password" => password}) do
+    if password == "kaos" do
+      feedbacks = Emoji.Feedbacks.list_feedbacks()
+
+      render(conn, "feedbacks.html", feedbacks: feedbacks)
+    else
+      conn
+      |> put_flash(:error, "Invalid password")
+      |> redirect(to: "/")
+    end
+  end
 end
